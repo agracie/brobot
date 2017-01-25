@@ -4,6 +4,7 @@ import weather
 import sys
 import codecs
 import dice
+import wolfram
 sys.stdout = codecs.getwriter('utf8')(sys.stdout)
 import sys
 reload(sys)
@@ -29,7 +30,8 @@ def handlers():
 
            # Weather currently disabled due to UTF-8 issues.
            , Handler(".*!forecast.*\r\n", lambda m: weather.encoding(m))
-
+           , Handler(".*[tT]ellem.*\r\n", lambda m: wolfram.get_result(m))
+          
            #Droppin' bangers
            , Handler(".*banger count.*\r\n", lambda m: bangers.count())
            , Handler(".*banger add https.*\r\n", lambda m: bangers.add_banger(m))
